@@ -1,0 +1,47 @@
+//String and InputStream Conversions
+
+    //Converts an Input Stream to a String
+	public static String getStringFromInputStream(InputStream is) {
+ 
+		BufferedReader br = null;
+		StringBuilder sb = new StringBuilder();
+ 
+		String line;
+		try {
+ 
+			br = new BufferedReader(new InputStreamReader(is));
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+ 
+		return sb.toString();
+ 
+	}
+	
+	//Converts a String to an InputStream
+	public static InputStream getInputStreamFromString(String str){
+		return new ByteArrayInputStream(str.getBytes());
+	}
+	
+	//How To use:
+	public void doStuff(){
+		//InputStream to String
+		InputStream is = new ByteArrayInputStream("file content..blah blah".getBytes());
+		String result = getStringFromInputStream(is);
+		System.out.println(result);
+		
+		//String to InputStream
+		InputStream is = getInputStreamFromString("This is an awesome String");
+	}
