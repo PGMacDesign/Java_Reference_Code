@@ -1,0 +1,10 @@
+	//This method splits up a string based on the ; delimiter and returns it as a String array
+	private static String[] parseEmailList(String emailIds) {
+		return emailIds.split(";"); //Or use whatever here for the delimiter
+	}
+	
+	//How to use
+	String str = "I once; knew a guy; that; to;ld me things;"
+	String[] str_array = parseEmailList(str);
+	
+	
