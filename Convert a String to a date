@@ -1,2 +1,6 @@
 //How to convert a string to a date. 
 java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);
+
+//Also
+SimpleDateFormat format = new SimpleDateFormat( "dd.MM.yyyy" );
+Date date = format.parse( myString );
