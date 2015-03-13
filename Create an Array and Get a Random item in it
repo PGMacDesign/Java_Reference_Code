@@ -1,0 +1,7 @@
+//This is a quick way to define an array, get a random element in it, and return the element.
+
+static String makeRandomName() {
+    int x = (int) (Math.random() * 5); //One of the 5 elements of the array
+    String name = new String[] {"Fluffy", "Fido", "Rover", "Spike", "Gigi"}[x]; //Gets one of these items and makes it the String 
+    return name;
+}
