@@ -1,0 +1,7 @@
+//Check memory total, free, max
+
+//(L.m is the same as System.out.println(str); as per my customization class)
+		  Runtime rt = Runtime.getRuntime();
+		  L.m("Total Memory = " + rt.totalMemory());
+		  L.m("Max Memory = " + rt.maxMemory());
+		  L.m("Free Memory = " + rt.freeMemory());
