@@ -1,0 +1,56 @@
+//This class serializes an object (Cat), writes it to a text file, retrieves the data from the text file, and then writes it to a new empty object. Also, it writes it out via Println
+
+public class Test1 {
+	//public void main_1(String[] args){
+	public static void main(String[] args) {
+		
+		Cat cat = new Cat("Fluffy", "Destroyer of Worlds", 7);
+		Cat cat2 = new Cat();
+		
+		try{
+			File file = new File("cat.txt");
+			file.createNewFile();
+			
+			PrintWriter pw = new PrintWriter(file);
+			pw.println("First line\n");
+			pw.flush();
+			pw.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		try{			
+			FileOutputStream fs = new FileOutputStream("cat.txt");
+			ObjectOutputStream os = new ObjectOutputStream(fs);
+			os.writeObject(cat);
+			os.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		try {
+			FileInputStream fis = new FileInputStream("cat.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			cat2 = (Cat) ois.readObject();
+			ois.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		L.m("fn = " + cat2.fn + ". ln = " + cat2.ln + ". age = " + cat2.age + ".");
+	}
+
+	public static class Cat implements Serializable{
+		
+		private String fn, ln;
+		private int age;
+		
+		public Cat(String fn, String ln, int age){
+			this.fn = fn;
+			this.ln = ln;
+			this.age = age;
+		}
+		
+		public Cat(){}
+	}
+}
