@@ -1,0 +1,8 @@
+//Really simple generics example
+public static <E extends Object> void genericExample1(E str){
+    String printme = str + " was requested to print";
+    System.out.println(printme);
+}
+
+//Reference my blog post here for more detailed outline:
+// https://pgmacdesign.wordpress.com/2015/07/07/java-generics/
