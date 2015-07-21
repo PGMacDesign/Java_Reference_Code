@@ -1,0 +1,43 @@
+//This is an interface example
+
+//Part 1: The interface, defined in its own class (Interface)
+public interface LoadSomeData {
+    public void onDataLoaded(List<String> passedData);
+}
+
+//Part 2: Where it is being implemented
+public class ClassThatReactsToInterface { //Ok for this to extend things, will not break interface functionality
+
+	//Create a reference object to the interface
+    private static LoadSomeData interfaceObject;
+	
+    public static void fillObject(LoadSomeData passedInterfaceObject){
+    	interfaceObject = passedInterfaceObject;
+    	
+        List<String> myList = new ArrayList();
+        myList.add("First thing");
+        myList.add("Second thing");
+        
+        //This will pass the data from this class through the interface link 
+        //to the other class and set the data.
+        interfaceObject.onDataLoaded(myList);
+    }
+}
+
+//Part 3: Use the interface in another class to update the data
+public class ClassThatYouRun implements LoadSomeData{
+
+	List<String> localData = new ArrayList();
+	public static void main(String[] args) {
+		ClassThatYouRun objectToPass = new ClassThatYouRun();
+		ClassThatReactsToInterface.fillObject(objectToPass);
+	}
+
+	@Override
+	public void onDataLoaded(List<String> passedData) {
+		localData = passedData;
+		for(String str : localData){
+			System.out.println(str);
+		}
+	}
+}
